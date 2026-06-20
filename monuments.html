@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>World Monuments Gallery & Map</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+    }
+
+    header {
+      background: #1e1e2f;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 10px;
+    }
+
+    .card h3 {
+      margin: 5px 0;
+      font-size: 18px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #555;
+    }
+
+    /* Map */
+    #map {
+      height: 500px;
+      margin: 20px;
+      border-radius: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #1e1e2f;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🌍 World Monuments Gallery & Interactive Map</h1>
+  <p>Explore famous monuments visually and geographically</p>
+</header>
+
+<h2 class="section-title">📸 Monument Photo Gallery</h2>
+
+<div class="gallery">
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?taj-mahal" alt="Taj Mahal">
+    <div class="card-content">
+      <h3>Taj Mahal</h3>
+      <p>Agra, India — Symbol of eternal love built by Shah Jahan.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?great-wall-of-china" alt="Great Wall">
+    <div class="card-content">
+      <h3>Great Wall of China</h3>
+      <p>China — Ancient defense structure spanning thousands of km.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?eiffel-tower" alt="Eiffel Tower">
+    <div class="card-content">
+      <h3>Eiffel Tower</h3>
+      <p>Paris, France — Icon of architecture and engineering.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?statue-of-liberty" alt="Statue of Liberty">
+    <div class="card-content">
+      <h3>Statue of Liberty</h3>
+      <p>USA — Symbol of freedom and democracy.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?colosseum-rome" alt="Colosseum">
+    <div class="card-content">
+      <h3>Colosseum</h3>
+      <p>Rome, Italy — Ancient Roman gladiator arena.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?machu-picchu" alt="Machu Picchu">
+    <div class="card-content">
+      <h3>Machu Picchu</h3>
+      <p>Peru — Lost Incan city in the Andes Mountains.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?christ-redeemer" alt="Christ the Redeemer">
+    <div class="card-content">
+      <h3>Christ the Redeemer</h3>
+      <p>Brazil — Iconic statue overlooking Rio de Janeiro.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?petra-jordan" alt="Petra">
+    <div class="card-content">
+      <h3>Petra</h3>
+      <p>Jordan — Ancient rock-carved city known as Rose City.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?pisa-tower" alt="Leaning Tower of Pisa">
+    <div class="card-content">
+      <h3>Leaning Tower of Pisa</h3>
+      <p>Italy — Famous tilted medieval tower.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?angkor-wat" alt="Angkor Wat">
+    <div class="card-content">
+      <h3>Angkor Wat</h3>
+      <p>Cambodia — Largest religious monument in the world.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?big-ben-london" alt="Big Ben">
+    <div class="card-content">
+      <h3>Big Ben</h3>
+      <p>London, UK — Famous clock tower of Westminster.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?burj-khalifa" alt="Burj Khalifa">
+    <div class="card-content">
+      <h3>Burj Khalifa</h3>
+      <p>Dubai — Tallest building in the world.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?pyramids-egypt" alt="Pyramids">
+    <div class="card-content">
+      <h3>Pyramids of Giza</h3>
+      <p>Egypt — Ancient tombs of Pharaohs.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?acropolis-athens" alt="Acropolis">
+    <div class="card-content">
+      <h3>Acropolis of Athens</h3>
+      <p>Greece — Birthplace of democracy.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://source.unsplash.com/600x400/?golden-gate-bridge" alt="Golden Gate Bridge">
+    <div class="card-content">
+      <h3>Golden Gate Bridge</h3>
+      <p>USA — Iconic suspension bridge in San Francisco.</p>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="section-title">🗺️ Interactive Map</h2>
+<div id="map"></div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  // Initialize map
+  const map = L.map('map').setView([20, 0], 2);
+
+  // OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Monuments with coordinates
+  const monuments = [
+    ["Taj Mahal", 27.1751, 78.0421, "Agra, India"],
+    ["Great Wall of China", 40.4319, 116.5704, "China"],
+    ["Eiffel Tower", 48.8584, 2.2945, "Paris, France"],
+    ["Statue of Liberty", 40.6892, -74.0445, "New York, USA"],
+    ["Colosseum", 41.8902, 12.4922, "Rome, Italy"],
+    ["Machu Picchu", -13.1631, -72.5450, "Peru"],
+    ["Christ the Redeemer", -22.9519, -43.2105, "Brazil"],
+    ["Petra", 30.3285, 35.4444, "Jordan"],
+    ["Leaning Tower of Pisa", 43.7229, 10.3966, "Italy"],
+    ["Angkor Wat", 13.4125, 103.8670, "Cambodia"],
+    ["Big Ben", 51.5007, -0.1246, "London, UK"],
+    ["Burj Khalifa", 25.1972, 55.2744, "Dubai"],
+    ["Pyramids of Giza", 29.9792, 31.1342, "Egypt"],
+    ["Acropolis of Athens", 37.9715, 23.7257, "Greece"],
+    ["Golden Gate Bridge", 37.8199, -122.4783, "San Francisco, USA"]
+  ];
+
+  // Add markers
+  monuments.forEach(m => {
+    L.marker([m[1], m[2]])
+      .addTo(map)
+      .bindPopup(`<b>${m[0]}</b><br>${m[3]}`);
+  });
+</script>
+
+<footer>
+  <p>&copy; 2026 World Monuments of Time Website</p>
+</footer>
+
+</body>
+</html>
